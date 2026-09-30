@@ -1,0 +1,275 @@
+/**
+ * Styles for CrosswordGrid and GridCell components.
+ * 
+ * Design principles:
+ * - Clean, newspaper-style crossword appearance
+ * - Clear visual feedback for interaction states
+ * - Accessible color contrasts
+ * - Smooth transitions for better UX
+ */
+
+/* ============================================================================
+   Grid Container
+   ============================================================================ */
+
+.crossword-grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.crossword-grid {
+  display: grid;
+  gap: 0;
+  border: 2px solid #333;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  user-select: none;
+}
+
+/* ============================================================================
+   Grid Cell Base Styles
+   ============================================================================ */
+
+.grid-cell {
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-cell:hover:not(.grid-cell--blocked) {
+  background-color: #f0f0f0;
+}
+
+/* ============================================================================
+   Cell Number
+   ============================================================================ */
+
+.grid-cell__number {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ============================================================================
+   Cell Input
+   ============================================================================ */
+
+.grid-cell__input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+  color: #000;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  caret-color: transparent; /* Hide cursor */
+}
+
+.grid-cell__input::selection {
+  background: transparent;
+}
+
+/* ============================================================================
+   Cell States
+   ============================================================================ */
+
+/* Blocked cell (black square) */
+.grid-cell--blocked {
+  background-color: #000;
+  cursor: default;
+  border-color: #000;
+}
+
+.grid-cell--blocked:hover {
+  background-color: #000;
+}
+
+/* Selected cell (current focus) */
+.grid-cell--selected {
+  background-color: #ffd700 !important;
+  border: 2px solid #ff8c00;
+  z-index: 10;
+  box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.3);
+}
+
+.grid-cell--selected .grid-cell__input {
+  font-weight: 700;
+}
+
+/* Active word (cells in the current word) */
+.grid-cell--active-word {
+  background-color: #ffffcc;
+}
+
+/* Completed cell (correct answer) */
+.grid-cell--completed {
+  background-color: #d4edda;
+}
+
+.grid-cell--completed .grid-cell__input {
+  color: #155724;
+}
+
+/* Error cell (incorrect answer) */
+.grid-cell--error {
+  background-color: #f8d7da;
+  animation: shake 0.3s ease;
+}
+
+.grid-cell--error .grid-cell__input {
+  color: #721c24;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ============================================================================
+   Direction Indicator
+   ============================================================================ */
+
+.direction-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.direction-indicator__label {
+  font-weight: 600;
+  color: #495057;
+}
+
+.direction-indicator__value {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 1rem;
+}
+
+.direction-indicator__hint {
+  color: #6c757d;
+  font-style: italic;
+  margin-left: 0.5rem;
+}
+
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .crossword-grid-container {
+    padding: 0.5rem;
+  }
+
+  .grid-cell__input {
+    font-size: 1.2rem;
+  }
+
+  .grid-cell__number {
+    font-size: 0.5rem;
+  }
+
+  .direction-indicator {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .direction-indicator__value {
+    font-size: 0.875rem;
+  }
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+  .crossword-grid {
+    box-shadow: none;
+    border: 2px solid #000;
+  }
+
+  .grid-cell {
+    border: 1px solid #000;
+  }
+
+  .grid-cell--selected,
+  .grid-cell--active-word {
+    background-color: #fff !important;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+
+  .direction-indicator {
+    display: none;
+  }
+}
+
+/* ============================================================================
+   Accessibility
+   ============================================================================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .grid-cell {
+    border: 2px solid #000;
+  }
+
+  .grid-cell--selected {
+    border: 3px solid #000;
+  }
+
+  .grid-cell--active-word {
+    background-color: #fff;
+    border: 2px dashed #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .grid-cell,
+  .grid-cell__input {
+    transition: none;
+  }
+
+  .grid-cell--error {
+    animation: none;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.grid-cell:focus-visible {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+.grid-cell__input:focus-visible {
+  outline: none;
+}

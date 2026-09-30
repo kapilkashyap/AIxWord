@@ -1,0 +1,335 @@
+================================================================================
+TYPESCRIPT TYPES & API CLIENT - QUICK REFERENCE
+================================================================================
+
+IMPORT PATHS
+============
+
+Types:
+  import type { Puzzle, Cell, Clue, Direction } from '../types/puzzle';
+  import type { PuzzleGenerateRequest, ApiState } from '../types/api';
+
+API Client:
+  import { apiClient } from '../services/api';
+
+Hooks:
+  import { useAPI } from '../hooks/useAPI';
+  import { usePuzzle } from '../hooks/usePuzzle';
+
+Utils:
+  import { getCellAt, getWordCells } from '../utils/grid';
+  import { validateTopic, sanitizeLetter } from '../utils/validation';
+  import { getNextCellInWord } from '../utils/keyboard';
+
+================================================================================
+COMMON PATTERNS
+================================================================================
+
+1. Generate a Puzzle
+-------------------
+import { apiClient } from '../services/api';
+import { useAPI } from '../hooks/useAPI';
+
+const { data, loading, error, execute } = useAPI<PuzzleGenerateResponse>();
+
+const handleGenerate = async () => {
+  await execute(() => 
+    apiClient.generatePuzzle({
+      topic: 'Science',
+      grid_size: 8,
+      difficulty: 'medium',
+    })
+  );
+};
+
+2. Load and Display Puzzle
+--------------------------
+import { usePuzzle } from '../hooks/usePuzzle';
+
+const { puzzle, loadPuzzle, userCells, cellStates } = usePuzzle();
+
+// Load puzzle
+loadPuzzle(puzzleData);
+
+// Access cells
+const cell = getCellAt(userCells, row, col);
+
+3. Handle Cell Input
+-------------------
+import { sanitizeLetter } from '../utils/validation';
+import { usePuzzle } from '../hooks/usePuzzle';
+
+const { setCellValue, selectCell } = usePuzzle();
+
+const handleKeyDown = (e: React.KeyboardEvent) => {
+  const letter = sanitizeLetter(e.key);
+  if (letter) {
+    setCellValue(row, col, letter);
+  }
+};
+
+4. Navigate Grid
+---------------
+import { getNextCellInWord } from '../utils/keyboard';
+
+const next = getNextCellInWord(
+  currentRow,
+  currentCol,
+  'across',
+  8,
+  blockedCells
+);
+
+if (next) {
+  selectCell(next.row, next.col);
+}
+
+5. Validate Solution
+-------------------
+import { apiClient } from '../services/api';
+
+const result = await apiClient.validateSolution(puzzleId, {
+  cells: userCells,
+});
+
+if (result.is_valid) {
+  console.log('Puzzle solved!');
+}
+
+6. Get AI Hint
+-------------
+import { apiClient } from '../services/api';
+
+const hint = await apiClient.getHint(puzzleId, {
+  clue_number: 1,
+  direction: 'across',
+  hint_type: 'letter',
+});
+
+7. Solve Word with AI
+---------------------
+import { apiClient } from '../services/api';
+
+const solution = await apiClient.solveWord(puzzleId, {
+  clue_number: 1,
+  direction: 'across',
+  use_intersections: true,
+});
+
+================================================================================
+TYPE REFERENCE
+================================================================================
+
+Cell
+----
+{
+  row: number;
+  col: number;
+  value: string | null;
+  is_blocked: boolean;
+  number: number | null;
+}
+
+Clue
+----
+{
+  number: number;
+  direction: 'across' | 'down';
+  text: string;
+  answer: string | null;
+  start_row: number;
+  start_col: number;
+  length: number;
+}
+
+Puzzle
+------
+{
+  puzzle_id: string;
+  topic: string;
+  grid_size: number;
+  cells: Cell[];
+  clues_across: Clue[];
+  clues_down: Clue[];
+  word_count: number;
+  fill_rate: number;
+  difficulty: 'easy' | 'medium' | 'hard';
+  created_at: string;
+  metadata: Record<string, unknown>;
+}
+
+================================================================================
+API METHODS
+================================================================================
+
+apiClient.generatePuzzle(request)
+  -> Promise<PuzzleGenerateResponse>
+
+apiClient.getPuzzle(puzzleId)
+  -> Promise<Puzzle>
+
+apiClient.listPuzzles()
+  -> Promise<Puzzle[]>
+
+apiClient.solvePuzzle(puzzleId, request?)
+  -> Promise<SolveResponse>
+
+apiClient.solveWord(puzzleId, request)
+  -> Promise<SolveResponse>
+
+apiClient.getHint(puzzleId, request)
+  -> Promise<HintResponse>
+
+apiClient.validateSolution(puzzleId, request)
+  -> Promise<ValidateResponse>
+
+apiClient.deletePuzzle(puzzleId)
+  -> Promise<void>
+
+================================================================================
+HOOK REFERENCE
+================================================================================
+
+useAPI<T>()
+-----------
+Returns: {
+  data: T | null;
+  loading: boolean;
+  error: string | null;
+  execute: (apiCall: () => Promise<T>) => Promise<T | null>;
+  reset: () => void;
+  clearError: () => void;
+}
+
+usePuzzle()
+-----------
+Returns: {
+  // State
+  puzzle: Puzzle | null;
+  userCells: Cell[];
+  selectedCell: { row: number; col: number } | null;
+  currentDirection: Direction;
+  activeClue: { number: number; direction: Direction } | null;
+  cellStates: CellState[];
+  gridState: GridState;
+  isComplete: boolean;
+  completionPercentage: number;
+  
+  // Actions
+  loadPuzzle: (puzzle: Puzzle) => void;
+  clearPuzzle: () => void;
+  setCellValue: (row: number, col: number, value: string | null) => void;
+  clearCell: (row: number, col: number) => void;
+  resetGrid: () => void;
+  selectCell: (row: number, col: number, direction?: Direction) => void;
+  toggleDirection: () => void;
+  selectClue: (clue: Clue) => void;
+}
+
+================================================================================
+UTILITY FUNCTIONS
+================================================================================
+
+Grid Utils
+----------
+coordsToIndex(row, col, gridSize) -> number
+indexToCoords(index, gridSize) -> { row, col }
+isValidCoord(row, col, gridSize) -> boolean
+getCellAt(cells, row, col) -> Cell | null
+getWordCells(cells, clue) -> Cell[]
+getWordText(cells) -> string
+isWordComplete(cells) -> boolean
+createEmptyGrid(gridSize) -> Cell[]
+updateCell(cells, row, col, value) -> Cell[]
+
+Validation Utils
+---------------
+isValidLetter(input) -> boolean
+sanitizeLetter(input) -> string | null
+validateTopic(topic) -> { isValid, error }
+validateGridSize(size) -> { isValid, error }
+validateWordCount(min, max) -> { isValid, error }
+isLetterKey(key) -> boolean
+isNavigationKey(key) -> boolean
+isDeletionKey(key) -> boolean
+
+Keyboard Utils
+-------------
+getNextCellFromArrow(row, col, key, gridSize, blocked) -> { row, col } | null
+getNextCellInWord(row, col, direction, gridSize, blocked) -> { row, col } | null
+getPreviousCellInWord(row, col, direction, gridSize, blocked) -> { row, col } | null
+toggleDirection(direction) -> Direction
+getWordCellPositions(startRow, startCol, length, direction) -> Array<{ row, col }>
+
+================================================================================
+ENVIRONMENT VARIABLES
+================================================================================
+
+.env file:
+  VITE_API_BASE_URL=http://localhost:8000
+
+Access in code:
+  import.meta.env.VITE_API_BASE_URL
+
+================================================================================
+BUILD COMMANDS
+================================================================================
+
+Install dependencies:
+  npm install
+
+Start dev server:
+  npm run dev
+
+Build for production:
+  npm run build
+
+Run linter:
+  npm run lint
+
+Run tests:
+  npm run test
+
+Verify types and API:
+  node verify_types_and_api.js
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+TypeScript errors:
+  1. Run: npx tsc --noEmit
+  2. Check import paths (use relative paths, not @types/)
+  3. Verify all types are exported
+
+Build errors:
+  1. Run: npm run build
+  2. Check for syntax errors
+  3. Verify all dependencies are installed
+
+API errors:
+  1. Check backend is running on port 8000
+  2. Verify VITE_API_BASE_URL in .env
+  3. Check network tab in browser DevTools
+
+Import errors:
+  1. Use relative paths: '../types/puzzle'
+  2. Don't use @types/ prefix
+  3. Check tsconfig.json path aliases
+
+================================================================================
+BEST PRACTICES
+================================================================================
+
+1. Always validate user input with sanitizeLetter()
+2. Check coordinates with isValidCoord() before accessing cells
+3. Use getCellAt() instead of direct array access
+4. Clone cells with cloneCells() before modifying
+5. Wrap API calls in try-catch blocks
+6. Use useAPI hook for consistent state management
+7. Use type imports: import type { ... }
+8. Keep cell state immutable
+9. Validate form inputs before API calls
+10. Handle loading and error states in UI
+
+================================================================================

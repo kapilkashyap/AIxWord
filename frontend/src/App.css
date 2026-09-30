@@ -1,0 +1,24 @@
+/**
+ * Global application styles for AIxWord.
+ * Component-specific styles are in their respective CSS modules.
+ */
+
+/* Reset and normalize */
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove default margins */
+body {
+  margin: 0;
+}

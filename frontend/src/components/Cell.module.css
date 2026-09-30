@@ -1,0 +1,224 @@
+/**
+ * CSS Module for Cell component.
+ * 
+ * Design principles:
+ * - Clean, newspaper-style crossword appearance
+ * - Clear visual feedback for interaction states
+ * - Accessible color contrasts
+ * - Smooth transitions for better UX
+ * - Scoped styles using CSS modules
+ */
+
+/* ============================================================================
+   Base Cell Styles
+   ============================================================================ */
+
+.cell {
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.cell:hover:not(.blocked):not(.readOnly) {
+  background-color: #f0f0f0;
+}
+
+/* ============================================================================
+   Cell Number
+   ============================================================================ */
+
+.number {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ============================================================================
+   Cell Input
+   ============================================================================ */
+
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+  color: #000;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  caret-color: transparent; /* Hide cursor */
+  box-sizing: border-box;
+}
+
+.input::selection {
+  background: transparent;
+}
+
+.input:disabled {
+  cursor: default;
+}
+
+/* ============================================================================
+   Cell States
+   ============================================================================ */
+
+/* Blocked cell (black square) */
+.blocked {
+  background-color: #000;
+  cursor: default;
+  border-color: #000;
+}
+
+.blocked:hover {
+  background-color: #000;
+}
+
+/* Selected cell (current focus) */
+.selected {
+  background-color: #ffd700 !important;
+  border: 2px solid #ff8c00;
+  z-index: 10;
+  box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.3);
+}
+
+.selected .input {
+  font-weight: 700;
+}
+
+/* Active word (cells in the current word) */
+.activeWord {
+  background-color: #ffffcc;
+}
+
+/* Completed cell (correct answer) */
+.completed {
+  background-color: #d4edda;
+}
+
+.completed .input {
+  color: #155724;
+}
+
+/* Error cell (incorrect answer) */
+.error {
+  background-color: #f8d7da;
+  animation: shake 0.3s ease;
+}
+
+.error .input {
+  color: #721c24;
+}
+
+/* Read-only cell */
+.readOnly {
+  cursor: default;
+}
+
+.readOnly:hover {
+  background-color: #fff;
+}
+
+.readOnly.selected {
+  background-color: #e0e0e0 !important;
+  border: 2px solid #999;
+}
+
+/* ============================================================================
+   Animations
+   ============================================================================ */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .input {
+    font-size: 1.2rem;
+  }
+
+  .number {
+    font-size: 0.5rem;
+  }
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+  .cell {
+    border: 1px solid #000;
+  }
+
+  .selected,
+  .activeWord {
+    background-color: #fff !important;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ============================================================================
+   Accessibility
+   ============================================================================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cell {
+    border: 2px solid #000;
+  }
+
+  .selected {
+    border: 3px solid #000;
+  }
+
+  .activeWord {
+    background-color: #fff;
+    border: 2px dashed #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cell,
+  .input {
+    transition: none;
+  }
+
+  .error {
+    animation: none;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.cell:focus-visible {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+.input:focus-visible {
+  outline: none;
+}

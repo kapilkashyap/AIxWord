@@ -1,0 +1,389 @@
+/**
+ * CSS Module for ClueList component.
+ * 
+ * Design principles:
+ * - Clean, organized layout for clue display
+ * - Clear visual hierarchy
+ * - Accessible color contrasts
+ * - Smooth transitions for better UX
+ * - Scoped styles using CSS modules
+ */
+
+/* ============================================================================
+   Base Clue List Styles
+   ============================================================================ */
+
+.clueList {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* ============================================================================
+   Overall Progress
+   ============================================================================ */
+
+.overallProgress {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.progressLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.progressValue {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.progressBar {
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+/* ============================================================================
+   Tabs Layout
+   ============================================================================ */
+
+.tabsContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.tabButtons {
+  display: flex;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.tabButton {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border: none;
+  background-color: transparent;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border-bottom: 3px solid transparent;
+}
+
+.tabButton:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.tabButton.active {
+  color: #667eea;
+  background-color: #fff;
+  border-bottom-color: #667eea;
+}
+
+.tabButton:focus {
+  outline: 2px solid #667eea;
+  outline-offset: -2px;
+}
+
+.tabButton:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tabPanels {
+  flex: 1;
+  overflow: hidden;
+}
+
+.tabPanel {
+  height: 100%;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   Split Layout
+   ============================================================================ */
+
+.splitContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.splitContainer .clueSection {
+  flex: 1;
+  min-height: 0;
+}
+
+.splitContainer .clueSection:first-child {
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* ============================================================================
+   Clue Section
+   ============================================================================ */
+
+.clueSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionProgress {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #667eea;
+  background-color: #e7eaff;
+  padding: 0.25rem 0.625rem;
+  border-radius: 12px;
+}
+
+/* ============================================================================
+   Clue List Container
+   ============================================================================ */
+
+.clueListContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Custom scrollbar styling */
+.clueListContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.clueListContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.clueListContainer::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.clueListContainer::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ============================================================================
+   Empty State
+   ============================================================================ */
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #6c757d;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .overallProgress {
+    padding: 0.75rem;
+  }
+
+  .progressHeader {
+    margin-bottom: 0.375rem;
+  }
+
+  .progressLabel,
+  .progressValue {
+    font-size: 0.8125rem;
+  }
+
+  .progressBar {
+    height: 6px;
+  }
+
+  .tabButton {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .sectionHeader {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .sectionTitle {
+    font-size: 0.9375rem;
+  }
+
+  .sectionProgress {
+    font-size: 0.8125rem;
+    padding: 0.1875rem 0.5rem;
+  }
+
+  .clueListContainer {
+    padding: 0.375rem;
+    gap: 0.375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .splitContainer {
+    flex-direction: column;
+  }
+
+  .tabButton {
+    font-size: 0.8125rem;
+    padding: 0.625rem 0.5rem;
+  }
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+  .clueList {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .overallProgress {
+    display: none;
+  }
+
+  .tabButtons {
+    display: none;
+  }
+
+  .splitContainer {
+    display: block;
+  }
+
+  .clueSection {
+    page-break-inside: avoid;
+  }
+
+  .sectionHeader {
+    background-color: #fff;
+    border-bottom: 2px solid #000;
+  }
+
+  .clueListContainer {
+    overflow: visible;
+  }
+}
+
+/* ============================================================================
+   Accessibility
+   ============================================================================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .clueList {
+    border: 2px solid #000;
+  }
+
+  .tabButton.active {
+    border-bottom-width: 4px;
+  }
+
+  .sectionHeader {
+    border-bottom: 2px solid #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tabButton,
+  .progressFill {
+    transition: none;
+  }
+
+  .tabPanel {
+    animation: none;
+  }
+
+  .clueListContainer {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.tabButton:focus-visible {
+  outline: 3px solid #667eea;
+  outline-offset: -2px;
+}
+
+/* Ensure scrollable areas are keyboard accessible */
+.clueListContainer:focus {
+  outline: 2px solid #667eea;
+  outline-offset: -2px;
+}
+
+.clueListContainer:focus:not(:focus-visible) {
+  outline: none;
+}

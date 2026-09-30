@@ -1,0 +1,323 @@
+/**
+ * CSS Module for ConfirmationDialog component.
+ * 
+ * Design principles:
+ * - Clear, attention-grabbing design
+ * - Accessible color contrasts
+ * - Smooth animations
+ * - Responsive layout
+ * - Focus on important actions
+ */
+
+/* ============================================================================
+   Overlay
+   ============================================================================ */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+   Dialog
+   ============================================================================ */
+
+.dialog {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   Icon
+   ============================================================================ */
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  background-color: #fff3cd;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+/* ============================================================================
+   Content
+   ============================================================================ */
+
+.content {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.message {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* ============================================================================
+   Actions
+   ============================================================================ */
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.button:focus-visible {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Cancel Button */
+.cancelButton {
+  background-color: #fff;
+  border-color: #e0e0e0;
+  color: #666;
+}
+
+.cancelButton:not(:disabled):hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+/* Confirm Button Variants */
+.confirmButton {
+  color: #fff;
+}
+
+.primaryButton {
+  background-color: #667eea;
+  border-color: #667eea;
+}
+
+.primaryButton:not(:disabled):hover {
+  background-color: #5568d3;
+  border-color: #5568d3;
+}
+
+.dangerButton {
+  background-color: #f44336;
+  border-color: #f44336;
+}
+
+.dangerButton:not(:disabled):hover {
+  background-color: #e53935;
+  border-color: #e53935;
+}
+
+.warningButton {
+  background-color: #ff9800;
+  border-color: #ff9800;
+}
+
+.warningButton:not(:disabled):hover {
+  background-color: #fb8c00;
+  border-color: #fb8c00;
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .dialog {
+    padding: 1.75rem;
+  }
+
+  .iconContainer {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .icon {
+    font-size: 1.75rem;
+  }
+
+  .content {
+    margin-bottom: 1.75rem;
+  }
+
+  .title {
+    font-size: 1.375rem;
+  }
+
+  .message {
+    font-size: 0.9375rem;
+  }
+
+  .button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 1.5rem;
+  }
+
+  .iconContainer {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .icon {
+    font-size: 1.5rem;
+  }
+
+  .content {
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .message {
+    font-size: 0.875rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .button {
+    width: 100%;
+    padding: 0.625rem 1rem;
+  }
+}
+
+/* ============================================================================
+   Accessibility
+   ============================================================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .dialog {
+    border: 2px solid #000;
+  }
+
+  .button {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .dialog,
+  .button,
+  .spinner {
+    animation: none;
+    transition: none;
+  }
+
+  .button:not(:disabled):hover {
+    transform: none;
+  }
+}
