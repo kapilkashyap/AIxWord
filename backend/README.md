@@ -118,6 +118,68 @@ Configuration is managed through environment variables. See `.env.example` for a
 - `MAX_ITERATIONS`: Max puzzle generation attempts (default: 50)
 - `MIN_FILL_RATE`: Minimum puzzle fill rate (default: 0.6)
 
+## Scripts & Verification Tools
+
+Backend verification and testing scripts are available in `.internal/scripts/backend/`:
+
+### Verification Scripts
+- **Setup & Configuration**: `verify_setup.py`, `verify_api_setup.py`
+- **LLM & AI**: `check_available_models.py`, `test_openai_connection.py`, `verify_llm.py`
+- **Domain Logic**: `verify_domain.py`, `verify_validation.py`
+- **Agent System**: `verify_planner.py`, `verify_word_generator.py`, `verify_orchestration.py`
+- **API Endpoints**: `verify_puzzle_api.py`
+- **Bug Fixes**: `verify_recursion_fix.py`, `verify_ssl_fix.py`
+
+### Testing Scripts
+- **Demo Data**: `demo_data.py` - Generate test data
+- **API Testing**: `test_api_manual.py`, `test_puzzle_endpoints.py`
+- **Unit Tests**: `test_solver_unit.py`
+
+**Full Documentation**: [Backend Scripts README](../.internal/scripts/backend/README.md)
+
+**Quick Usage**:
+```bash
+# Verify setup
+python .internal/scripts/backend/verification/verify_setup.py
+
+# Check LLM connection
+python .internal/scripts/backend/verification/test_openai_connection.py
+
+# Verify domain logic
+python .internal/scripts/backend/verification/verify_domain.py
+```
+
+## Documentation
+
+Comprehensive backend documentation is available in the `docs/backend/` directory:
+
+### Architecture & Design
+- **[Backend Architecture](../docs/backend/architecture/BACKEND_ARCHITECTURE.md)** - Complete system architecture and design principles
+- **[Multi-Agent System](../docs/backend/architecture/MULTI_AGENT_SYSTEM.md)** - AI agent orchestration with LangGraph
+
+### API Documentation
+- **[API Reference](../docs/backend/api/API.md)** - Core API endpoints and usage
+- **[Complete API Reference](../docs/backend/api/API_REFERENCE_COMPLETE.md)** - Comprehensive API documentation
+- **[Puzzle API Endpoints](../docs/backend/api/PUZZLE_API_ENDPOINTS.md)** - Detailed puzzle endpoint docs
+
+### Guides
+- **[Testing Guide](../docs/backend/guides/TESTING.md)** - Testing strategy and practices
+- **[Performance Guide](../docs/backend/guides/PERFORMANCE.md)** - Performance optimization
+
+### Deployment
+- **[Deployment Guide](../docs/backend/deployment/DEPLOYMENT.md)** - Production deployment and Docker setup
+
+### Technical Deep Dive
+- **[Technical Documentation Index](../docs/backend/technical-deep-dive/README_TECHNICAL_DOCS.md)** - Advanced technical docs
+- **[AI Concepts & Implementation](../docs/backend/technical-deep-dive/AI_CONCEPTS_AND_IMPLEMENTATION.md)** - AI/ML implementation details
+- **[Architecture Deep Dive](../docs/backend/technical-deep-dive/ARCHITECTURE_DEEP_DIVE.md)** - Detailed architectural patterns
+
+### Related Documentation
+- **[Frontend Documentation](../docs/frontend/README.md)** - React/TypeScript frontend docs
+- **[User Guide](../docs/guides/USER_GUIDE.md)** - End-user documentation
+- **[Quick Start](../docs/guides/QUICK_START.md)** - Getting started guide
+- **[Development Guide](../docs/guides/DEVELOPMENT.md)** - Development workflow
+
 ## API Endpoints
 
 ### Puzzle Generation

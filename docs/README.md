@@ -6,84 +6,122 @@ Welcome to the AIxWord documentation! This directory contains comprehensive guid
 
 ## 📚 Documentation Structure
 
-### 🏗️ Architecture
-Deep technical documentation on system design and implementation.
+### 🔵 Backend Documentation
+Complete backend system documentation including architecture, API, and implementation details.
 
-- **[ARCHITECTURE.md](architecture/ARCHITECTURE.md)** - Complete system architecture overview
-- **[MULTI_AGENT_SYSTEM.md](architecture/MULTI_AGENT_SYSTEM.md)** - Multi-agent orchestration with LangGraph
-- **[API.md](architecture/API.md)** - API layer design and patterns
+**[→ Backend Documentation Index](backend/README.md)**
 
-### 📖 API Reference
-Complete API documentation for developers.
+- **Architecture**
+  - [Backend Architecture](backend/architecture/BACKEND_ARCHITECTURE.md) - Complete system architecture
+  - [Multi-Agent System](backend/architecture/MULTI_AGENT_SYSTEM.md) - LangGraph orchestration
+  
+- **API Reference**
+  - [API Reference](backend/api/API.md) - Core API design and patterns
+  - [Complete API Reference](backend/api/API_REFERENCE_COMPLETE.md) - Full REST API documentation
+  - [Puzzle API Endpoints](backend/api/PUZZLE_API_ENDPOINTS.md) - Puzzle generation and solving
+  
+- **Guides**
+  - [Testing Guide](backend/guides/TESTING.md) - Testing strategy and guidelines
+  - [Performance Guide](backend/guides/PERFORMANCE.md) - Performance optimization
+  
+- **Deployment**
+  - [Deployment Guide](backend/deployment/DEPLOYMENT.md) - Production deployment
+  
+- **Technical Deep Dive**
+  - [Technical Docs Index](backend/technical-deep-dive/README_TECHNICAL_DOCS.md) - Navigation guide
+  - [Architecture Deep Dive](backend/technical-deep-dive/ARCHITECTURE_DEEP_DIVE.md) - Multi-agent system explained
+  - [AI Concepts & Implementation](backend/technical-deep-dive/AI_CONCEPTS_AND_IMPLEMENTATION.md) - AI/ML concepts
+  - [Future Enhancements](backend/technical-deep-dive/FUTURE_ENHANCEMENTS_ROADMAP.md) - Planned features
+  - [Technical Q&A](backend/technical-deep-dive/TECHNICAL_QA_REFERENCE.md) - Technical reference
 
-- **[API_REFERENCE_COMPLETE.md](api/API_REFERENCE_COMPLETE.md)** - Full REST API reference
-- **[PUZZLE_API_ENDPOINTS.md](api/PUZZLE_API_ENDPOINTS.md)** - Puzzle generation and solving endpoints
+### 🟢 Frontend Documentation
+Complete frontend documentation including architecture, components, and user interface.
 
-### 🚀 User & Developer Guides
-Practical guides for getting started and contributing.
+**[→ Frontend Documentation Index](frontend/README.md)**
 
-- **[QUICK_START.md](guides/QUICK_START.md)** - Get up and running in 5 minutes
-- **[USER_GUIDE.md](guides/USER_GUIDE.md)** - Complete user manual
-- **[DEVELOPMENT.md](guides/DEVELOPMENT.md)** - Development setup and workflow
-- **[CONTRIBUTING.md](guides/CONTRIBUTING.md)** - How to contribute to the project
-- **[DEPLOYMENT.md](guides/DEPLOYMENT.md)** - Production deployment guide
-- **[TESTING.md](guides/TESTING.md)** - Testing strategy and guidelines
-- **[TESTING_CHECKLIST.md](guides/TESTING_CHECKLIST.md)** - Pre-release testing checklist
-- **[FRONTEND.md](guides/FRONTEND.md)** - Frontend architecture and components
-- **[PERFORMANCE.md](guides/PERFORMANCE.md)** - Performance optimization guide
-- **[DEMO_DATA.md](guides/DEMO_DATA.md)** - Sample data for demos
+- **Architecture**
+  - [Frontend Architecture](frontend/architecture/FRONTEND_ARCHITECTURE.md) - React architecture and patterns
+  
+- **API & Types**
+  - [Types & API Client](frontend/api/TYPES_AND_API_CLIENT.md) - TypeScript types and API client
+  
+- **Guides**
+  - [User Guide](frontend/guides/USER_GUIDE.md) - Complete user manual
 
-### 🎓 Technical Deep Dive
-In-depth technical documentation and reference materials.
+### 📖 General Guides
+Cross-cutting guides for getting started, development, and contribution.
 
-- **[README_TECHNICAL_DOCS.md](technical-deep-dive/README_TECHNICAL_DOCS.md)** - Navigation guide
-- **[ARCHITECTURE_DEEP_DIVE.md](technical-deep-dive/ARCHITECTURE_DEEP_DIVE.md)** - Multi-agent system explained
-- **[AI_CONCEPTS_AND_IMPLEMENTATION.md](technical-deep-dive/AI_CONCEPTS_AND_IMPLEMENTATION.md)** - AI/ML concepts
-- **[FUTURE_ENHANCEMENTS_ROADMAP.md](technical-deep-dive/FUTURE_ENHANCEMENTS_ROADMAP.md)** - Planned features
-- **[TECHNICAL_QA_REFERENCE.md](technical-deep-dive/TECHNICAL_QA_REFERENCE.md)** - Technical Q&A reference
+- **[Quick Start](guides/QUICK_START.md)** - Get up and running in 5 minutes
+- **[Development Guide](guides/DEVELOPMENT.md)** - Development setup and workflow
+- **[Contributing](guides/CONTRIBUTING.md)** - How to contribute to the project
+- **[User Guide](guides/USER_GUIDE.md)** - Complete user manual (comprehensive)
+- **[Frontend Guide](guides/FRONTEND.md)** - Frontend overview and setup
+- **[Testing Checklist](guides/TESTING_CHECKLIST.md)** - Pre-release testing checklist
+- **[Demo Data](guides/DEMO_DATA.md)** - Sample data for demos
 
 ---
 
 ## 🎯 Quick Navigation
 
 **New to AIxWord?**  
-→ Start with [QUICK_START.md](guides/QUICK_START.md)
+→ Start with [Quick Start](guides/QUICK_START.md)
 
-**Want to understand the architecture?**  
-→ Read [ARCHITECTURE.md](architecture/ARCHITECTURE.md) and [MULTI_AGENT_SYSTEM.md](architecture/MULTI_AGENT_SYSTEM.md)
+**Want to understand the backend architecture?**  
+→ Read [Backend Architecture](backend/architecture/BACKEND_ARCHITECTURE.md) and [Multi-Agent System](backend/architecture/MULTI_AGENT_SYSTEM.md)
+
+**Want to understand the frontend?**  
+→ Read [Frontend Architecture](frontend/architecture/FRONTEND_ARCHITECTURE.md) and [Types & API Client](frontend/api/TYPES_AND_API_CLIENT.md)
 
 **Building features?**  
-→ Check [DEVELOPMENT.md](guides/DEVELOPMENT.md) and [API_REFERENCE_COMPLETE.md](api/API_REFERENCE_COMPLETE.md)
+→ Check [Development Guide](guides/DEVELOPMENT.md) and [Complete API Reference](backend/api/API_REFERENCE_COMPLETE.md)
 
 **Deep technical understanding?**  
-→ Start with [technical-deep-dive/README_TECHNICAL_DOCS.md](technical-deep-dive/README_TECHNICAL_DOCS.md)
+→ Start with [Technical Docs Index](backend/technical-deep-dive/README_TECHNICAL_DOCS.md)
 
 **Deploying to production?**  
-→ Follow [DEPLOYMENT.md](guides/DEPLOYMENT.md)
+→ Follow [Deployment Guide](backend/deployment/DEPLOYMENT.md)
 
 ---
 
 ## 📊 Documentation Statistics
 
-- **Architecture Docs:** 3 files
-- **API Reference:** 2 files
-- **User/Dev Guides:** 10 files
-- **Technical Deep Dive:** 5 files
-- **Total:** 20 public-facing documents
+- **Backend Documentation:** 15 files
+  - Architecture: 2 files
+  - API Reference: 3 files
+  - Guides: 2 files
+  - Deployment: 1 file
+  - Technical Deep Dive: 5 files
+  - Index: 1 file
+
+- **Frontend Documentation:** 4 files
+  - Architecture: 1 file
+  - API & Types: 1 file
+  - Guides: 1 file
+  - Index: 1 file
+
+- **General Guides:** 7 files
+
+- **Total:** 26 public-facing documents
 
 ---
 
 ## 🔒 Internal Documentation
 
-Development history, troubleshooting logs, and project management documents are kept in the `/.internal` directory (not included in public releases).
+Development history, troubleshooting logs, project management documents, and verification scripts are kept in the `/.internal` directory (not included in public releases).
+
+**Internal Structure:**
+- `.internal/development-history/` - Phase summaries and development logs
+- `.internal/project-management/` - Project status, assignments, and compliance docs
+- `.internal/scripts/` - Verification and testing scripts (frontend & backend)
+- `.internal/troubleshooting/` - Issue resolution logs and debugging guides
 
 ---
 
 ## 🤝 Contributing to Documentation
 
-Found an error or want to improve the docs? See [CONTRIBUTING.md](guides/CONTRIBUTING.md) for guidelines.
+Found an error or want to improve the docs? See [Contributing Guide](guides/CONTRIBUTING.md) for guidelines.
 
 ---
 
-**Last Updated:** 2026-09-30  
+**Last Updated:** 2026-10-01  
 **Version:** 1.0.0

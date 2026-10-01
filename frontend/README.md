@@ -315,12 +315,28 @@ npm install
 rm -rf node_modules/.vite
 ```
 
+## Documentation
+
+For detailed documentation, see the [Frontend Documentation](../docs/frontend/README.md):
+
+- **[Frontend Architecture](../docs/frontend/architecture/FRONTEND_ARCHITECTURE.md)** - Architecture patterns, design decisions, and technical details
+- **[Types and API Client](../docs/frontend/api/TYPES_AND_API_CLIENT.md)** - TypeScript types, API client, hooks, and utilities
+- **[User Guide](../docs/frontend/guides/USER_GUIDE.md)** - Complete user guide for solving puzzles
+
+### Related Documentation
+
+- **[Quick Start Guide](../docs/guides/QUICK_START.md)** - Get started quickly
+- **[Development Guide](../docs/guides/DEVELOPMENT.md)** - Development workflow and best practices
+- **[Testing Guide](../docs/guides/TESTING.md)** - Testing strategy and guidelines
+- **[API Reference](../docs/api/API_REFERENCE_COMPLETE.md)** - Backend API documentation
+
 ## Contributing
 
 1. Follow the existing code style
 2. Write tests for new features
 3. Update documentation
 4. Run linter before committing
+5. See [Contributing Guide](../docs/guides/CONTRIBUTING.md) for details
 
 ## License
 
